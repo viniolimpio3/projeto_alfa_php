@@ -1,7 +1,5 @@
 <?php 
-// session_start inicia a sessão
-
-// as variáveis login e senha recebem os dados digitados na página anterior
+// as variáveis login e senha recebem os dados digitados na página anterior (LoginAdm.php)
 $login = $_POST['usuario_login'];
 $senha = $_POST['senha_login'];
 // as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
@@ -10,14 +8,14 @@ include "conexao.php";
  
 // A variavel $result pega as varias $login e $senha, faz uma 
 //pesquisa na tabela de usuarios
-
-$Comando=$conexao->prepare("select id, name_user, mail_user, pass FROM user 
-	WHERE  mail_user=? AND pass=?");		
-    $Comando->bindParam(1, $login);
-    $Comando->bindParam(2, $senha);
+$query = "select id, name_user, mail_user, pass FROM user 
+WHERE  mail_user=? AND pass=?";
+$Comando=$conexao->prepare($query);		
+$Comando->bindParam(1, $login);
+$Comando->bindParam(2, $senha);
    
     if ($Comando->execute()){
-      if ($Comando->rowCount () >0) {	
+      if ($Comando->rowCount () >0) {	// se o resultado trazer mais de uma linha ...
 
         while ($Linha = $Comando->fetch(PDO::FETCH_OBJ)) {
           $id = $Linha->ID_ADM;

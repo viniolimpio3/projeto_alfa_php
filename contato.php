@@ -56,7 +56,7 @@ if(isset($_REQUEST['valor']) and ($_REQUEST['valor'] == 'enviado'))
             }
             else 
             {
-                    echo "Erro ao tentar efetivar o contato.";
+                echo "Erro ao tentar efetivar o contato.";
 
             }
         }

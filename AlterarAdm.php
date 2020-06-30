@@ -22,33 +22,49 @@ else
 
 if(isset($_REQUEST['valor']) and ($_REQUEST['valor'] == 'enviado'))
 {
-    $Botao = $_POST ["Botao"]; 
+    $btnController = $_POST ["btnController"]; 
 
-    if ($Botao =="Alterar")
-    {
-        include "AlteradoAdm.php";   
-    }
-    if ($Botao =="Gerenciar")
-    {
+    if ($btnController =="Alterar"){
+		include "AlteradoAdm.php"; 
+
+    }else if ($btnController =="Gerenciar"){
         $_SESSION['controleResp'] = "gerenciar";
         header('location:FaleConoscoAdm.php'); 
     }
-}
-else 
-{
+}else{
     ?> 
-    <form name="form1" action="AlterarAdm.php?valor=enviado" method="POST">
-  		Nome: <br>
-  		<input class="input" type="text" id ="nome_cadastro" placeholder="Preencher Nome" name="nome_cadastro"><BR><p>
- 		  Usuário:(Email) <br>
-  		<input class="input" type="text" placeholder="Preencher E-mail" name="usuario_cadastro"><BR><p>
- 		  Senha:<br>
-  		<input class="input" type="password" placeholder="Preencher Senha" name="senha_cadastro" maxlength="8" required><BR><p>
-		Confirmar Senha:<br>
-		<input class="input" type="password" placeholder="Preencher Senha" name="senha_confirma" maxlength="8" required><BR><p>
+		<form name="form1" action="AlterarAdm.php?valor=enviado" method="POST">
+		
+			<div class="input-group">
 
-		<input name="Botao" type="submit" value="Alterar">
-		<input name="Botao" type="submit" value="Gerenciar"><br>
+				<label for="nome_cadastro"> Nome: <br> </label>
+				<input class="input" type="text" id ="nome_cadastro" placeholder="Preencher Nome" name="nome_cadastro"><BR><p>
+			</div>
+			<div class="input-group">
+				
+				<label for="usuario_cadastro"> Usuário:(Email) <br> </label>
+				<input class="input" type="text" placeholder="Preencher E-mail" name="usuario_cadastro"><BR><p>
+			</div>
+
+			<div class="input-group">
+
+				<label for="senha_cadastro"> Senha:<br> </label>
+				<input class="input" type="password" placeholder="Preencher Senha" name="senha_cadastro" maxlength="8" required><BR><p>
+			</div>
+			
+			<div class="input-group">
+
+				<label for="senha_confirma"> Confirmar Senha:<br> </label>
+				<input class="input" type="password" placeholder="Preencher Senha" name="senha_confirma" maxlength="8" required><BR><p>
+			</div>
+
+			<div class="input-group">
+
+				<input name="btnController" type="submit" value="Alterar">
+				<input name="btnController" type="submit" value="Gerenciar"><br>
+	
+			</div>
+
 		</form>
     </body>
   <?php 

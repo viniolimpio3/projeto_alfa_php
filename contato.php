@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +8,7 @@
 
 <?php
 // Contato com banco
-if(isset($_REQUEST['valor']) and ($_REQUEST['valor'] == 'enviado')) 
-{ 
+if(isset($_REQUEST['valor']) and ($_REQUEST['valor'] == 'enviado')) { 
     // cria sessão se usuário tiver clicado no botão enviar do formulário
 
     $Nome = $_POST ["Nome"]; 

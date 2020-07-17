@@ -8,7 +8,7 @@
 
 <?php
 // Contato com banco
-if(isset($_REQUEST['valor']) and ($_REQUEST['valor'] == 'enviado')) { 
+if(isset($_REQUEST['valor']) and ($_REQUEST['enviou'] === 'ok')) { 
     // cria sessão se usuário tiver clicado no botão enviar do formulário
 
     $Nome = $_POST ["Nome"]; 
@@ -26,20 +26,18 @@ if(isset($_REQUEST['valor']) and ($_REQUEST['valor'] == 'enviado')) {
 
     $Resposta = null;
     include "conexao.php";
-    try
-    {
-        $Comando=$conexao->prepare("INSERT INTO TB_FALECONOSCO (NOME_CONTATO, FONE_CONTATO, EMAIL_CONTATO, ASSUNTO_CONTATO, MSG_CONTATO, RESP_CONTATO) VALUES ( ?, ?, ?, ?, ?, ?)");
-                
-        $Comando->bindParam(1, $Nome);
-        $Comando->bindParam(2, $Fone);
-        $Comando->bindParam(3, $Email);
-        $Comando->bindParam(4, $Assunto);
-        $Comando->bindParam(5, $Msg);
-        $Comando->bindParam(6, $Resposta);
+    try{
+        $command=$conexao->prepare("INSERT INTO TB_FALECONOSCO (NOME_CONTATO, FONE_CONTATO, EMAIL_CONTATO, ASSUNTO_CONTATO, MSG_CONTATO, RESP_CONTATO) VALUES ( ?, ?, ?, ?, ?, ?)");                
+        $command->bindParam(1, $Nome);
+        $command->bindParam(2, $Fone);
+        $command->bindParam(3, $Email);
+        $command->bindParam(4, $Assunto);
+        $command->bindParam(5, $Msg);
+        $command->bindParam(6, $Resposta);
                             
-        if ($Comando->execute()){
+        if ($command->execute()){
             
-            if ($Comando->rowCount () >0) {
+            if ($command->rowCount () >0) {
                 echo "<script> alert('Contato resgistrado com sucesso!')</script>";
                 echo ('<meta http equiv="refresh"content=0;"contato.php">'); 
             
@@ -64,7 +62,7 @@ if(isset($_REQUEST['valor']) and ($_REQUEST['valor'] == 'enviado')) {
     }
 } else { // Se usuário ainda não clicou no botão de enviar, mostra o formulário na página:
     ?>
-        <form name="form1" action="contato.php?valor=enviado" method="POST">
+    <form name="form1" action="contato.php?enviou=ok" method="POST">
         
         <div class="input-group">
             <label for="Nome">Nome:</label>

@@ -28,3 +28,17 @@ create table if not exists pedido(
     foreign key( fk_id_prod ) references produto (id_prod),
     foreign key( fk_id_cliente ) references cliente (id_cliente)
 );	
+
+insert into produto(name_prod, value_prod, desc_prod)values
+('Toddy', 12.00, 'Achocolatado'),
+('Omo', 12.00, 'Produto de Limpeza'),
+('Notebook HP', 900.00, 'Eletrônicos'),
+('TV Samsung', 1300.00, 'Eletrônicos'),
+('Liquidificador', 130.00, 'Eletroeletrônicos');
+
+insert into cliente(name_cliente, end_cliente, user_cliente, senha_cliente)values
+('Vinícius','Rua das Abobrinhas, 123', 'vini@any.com', sha1('senha')),
+('Phelipe','Rua das Abobrinhas, 124', 'ph@any.com', sha1('senha')),
+('Nicolas','Rua das Abobrinhas, 125', 'nico@any.com', sha1('senha')),
+('Gabriel','Rua das Abobrinhas, 126', 'biel@any.com', sha1('senha'));
+

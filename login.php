@@ -10,11 +10,11 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
     $controller = $_POST ["btnController"]; 
     session_start();
     if ($controller =="Logar"){
-        $_SESSION["controleAdm"] = "logado";
-
-        // header('location:LogadoAdm.php');
-        include 'LogadoAdm.php';
         
+        // include 'logar.php';
+        $_SESSION['usuario_login'] = $_POST['usuario_login'];
+        $_SESSION['senha_login'] = sha1($_POST['senha_login']);
+         header('location:logar.php');
     }
     if ($controller == "Cadastrar"){
         $_SESSION["controleAdm"] = "novo";
@@ -34,8 +34,8 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
     <label for=""> Senha: <br></label>
     <input type="password" placeholder="Preencher Senha" name="senha_login" maxlength="8" ><br><p>
 
-    <input name="btnController" type="submit" value="Cadastrar">
     <input name="btnController" type="submit" value="Logar">
+    <input name="btnController" type="submit" value="Cadastrar">
     <input name="btnController" type="submit" value="Esqueci minha Senha">
 
 

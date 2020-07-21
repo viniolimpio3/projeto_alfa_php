@@ -10,11 +10,11 @@
         <title>VITRINE | Projeto Alpha</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient" style="background-color:#8E24AA;">
+        <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #222;">
 
              <div class="container">
                  
-                <a href="#" class="navbar-brand h1 mb-0">Logo da Empresa</a><!--mb-0 = margin-bottom:0 -->
+                <a href="#" class="navbar-brand h1 mb-0">Projeto Alpha</a><!--mb-0 = margin-bottom:0 -->
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite"><!-- data-target é o id do toggle-->
                     <span class="navbar-toggler-icon"></span>
@@ -46,9 +46,17 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <div class="login">
-                            <a class="btn btn-dark" href="./LoginAdm.php">Entrar</a>
+                        <div class="login" style="color: #fff !important;">
 
+                            <?php 
+                             if(include 'isLogged.php' ){ //se o retorno do arquivo isLogged for true...?>
+                                <p>Cliente Logado: <?php echo($_SESSION['cliente']['name']); ?> </p>
+                                <form method="POST" action="doLogout.php">
+                                    <input class="btn btn-dark" type="submit" value="Logout">
+                                </form>
+                            <?php }else{ ?>
+                                <a class="btn btn-dark" href="./login.php">Entrar</a>
+                            <?php }?>
                         </div>
                     </ul>
 
@@ -73,7 +81,7 @@
 
             </div>
             <?php
-                session_start();
+                
                 if(isset($_REQUEST['selecionouProduto']) and $_REQUEST['selecionouProduto'] === 'sim' and isset($_POST['controllerProduto']) ){
                     
                     $_SESSION['selectedProduct'] = $_POST['controllerProduto'];//sessão para levar ao arquivo 'productDetail.php'

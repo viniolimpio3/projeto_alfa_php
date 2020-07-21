@@ -40,9 +40,12 @@ if(isset($_SESSION['selectedProduct']) and $_SESSION['selectedProduct'] !== ''){
         echo "<A href=\"vitrine.php\">Retornar à vitrine</A>";
     }
     if(isset($_REQUEST['comprar']) and $_REQUEST['comprar'] === 'sim'){
-        echo'VOCE QUER COMPRAR ISSO! PARABÉNS, BURGUÊS SAFADO!';
         //ir para login
-        header('location:login.php');
+        if(include 'isLogged.php'){//se o user estiver logado...
+            header('location:pagamento.php');
+        }else{
+            header('location:login.php');
+        }
     }else{
 
     ?>
@@ -58,8 +61,19 @@ if(isset($_SESSION['selectedProduct']) and $_SESSION['selectedProduct'] !== ''){
             <h1>Nome do Produto: <?php echo $produto_vitrine ?> </h1>
             <h2>Descrição Produto: <?php echo $produto['desc'] ?></h2>
             <h2>Valor Produto: <?php echo $produto['valor'] ?></h2>
-            <!-- EXIBIR IMAGEM DO PRODUTO GENÉRICO -->
 
+            <!-- EXIBIR IMAGEM DO PRODUTO !!!! GALERA DO FRONTEND!!!!!!!!!!!! -->
+            <?php if($produto_vitrine==='Toddy'):?>
+
+                <!-- HTML PARA EXIBIR IMAGEM DO TODDY -->
+
+            <?php endif ?>
+            <?php if($produto_vitrine === 'Notebook HP'): ?>
+                <!-- HTML PARA EXIBIR IMAGEM DO NOTEBOOK -->
+            <?php endif ?>
+            <?php if($produto_vitrine === 'TV Samsung'): ?>
+                <!-- HTML PARA EXIBIR IMAGEM DA TV -->
+            <?php endif ?>
 
             <form action="productDetail.php?comprar=sim" method="POST">
 

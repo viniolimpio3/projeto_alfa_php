@@ -1,6 +1,6 @@
 ﻿<?php
 
-$db ='login';
+$db ='alpha_php';
 $user  ='root';
 $password = '';
 
@@ -11,6 +11,5 @@ try{
 }
 catch (PDOException $erro){
     echo "Erro na conexão: " . $erro->getMessage();
-    
 }
 ?>

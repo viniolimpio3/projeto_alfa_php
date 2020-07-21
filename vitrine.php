@@ -7,7 +7,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-        <title>HOME | Projeto Alpha</title>
+        <title>VITRINE | Projeto Alpha</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-gradient" style="background-color:#8E24AA;">
@@ -72,95 +72,113 @@
                 </div>
 
             </div>
+            <?php
+                session_start();
+                if(isset($_REQUEST['selecionouProduto']) and $_REQUEST['selecionouProduto'] === 'sim' and isset($_POST['controllerProduto']) ){
+                    
+                    $_SESSION['selectedProduct'] = $_POST['controllerProduto'];//sessão para levar ao arquivo 'productDetail.php'
+                    
+                    header('Location:productDetail.php');
+
+                }else{
+
+            ?>
             
+                <div class="row mb-5">
+                    <form 
+                        method="POST"
+                        style="width: 100% !important;display: flex;" 
+                        action="vitrine.php?selecionouProduto=sim"
+                    >
+                        <div class="col-lg-4 col-sm-6">
+                            
+                            <div class="card">
 
-            <div class="row mb-5">
-                
-                <div class="col-lg-4 col-sm-6">
-                    
-                    <div class="card">
+                                <img src="img/img1.jpg" class="card-img-top">
+                                <div class="card-body">
 
-                        <img src="img/img1.jpg" class="card-img-top">
-                        <div class="card-body">
+                                    <h4 class="card-title">Notebook HP</h4>   
+                                    <h6 class="card-subtitle text-muted mb-2">Especificação do Produto</h6>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam.</p>
+                                
+                                </div>
+                                <ul class="list-group list-group-flush">
 
-                            <h4 class="card-title">Produto 1</h4>   
-                            <h6 class="card-subtitle text-muted mb-2">Especificação do Produto</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam.</p>
-                        
+                                    <li class="list-group-item">Descrição 1</li>
+                                    <li class="list-group-item">Descrição 2</li>
+                                    <li class="list-group-item">Descrição 3</li>
+
+                                </ul>
+                                <div class="card-body">
+                                    
+                                    <input name='controllerProduto' type="submit" class="btn btn-dark" href="" value="Notebook HP">                            
+                                </div>
+                                
+
+                            </div>
+
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Produto 1</li>
-                            <li class="list-group-item">Produto 2</li>
-                            <li class="list-group-item">Produto 3</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="">Ver detalhes</a>                            
+
+                        <div class="col-lg-4 col-sm-6 ">
+                            
+                            <div class="card">
+
+                                <img src="img/img2.jpg" class="card-img-top">
+                                <div class="card-body">
+
+                                    <h4 class="card-title">Televisão Samsung</h4>   
+                                    <h6 class="card-subtitle text-muted mb-2">Especificação do Produto</h6>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam.</p>
+                                
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Descrição 1</li>
+                                    <li class="list-group-item">Descrição 2</li>
+                                    <li class="list-group-item">Descrição 3</li>
+                                </ul>
+                                <div class="card-body">
+                                    <input name="controllerProduto" type="submit" class="btn btn-dark" href="" value="TV Samsung">
+                                </div>
+                                
+
+                            </div>
+
                         </div>
-                        
 
-                    </div>
+                        <div class="col-lg-4 col-sm-6">
+                            
+                            <div class="card">
 
-                </div>
+                                <img src="img/img3.jpg" class="card-img-top">
+                                <div class="card-body">
 
-                <div class="col-lg-4 col-sm-6 ">
-                    
-                    <div class="card">
+                                    <h4 class="card-title">Toddy</h4>   
+                                    <h6 class="card-subtitle text-muted mb-2">Especificação do Produto</h6>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam.</p>
+                                
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Descrição 1</li>
+                                    <li class="list-group-item">Descrição 2</li>
+                                    <li class="list-group-item">Descrição 3</li>
+                                </ul>
+                                <div class="card-body">
+                                    <input name="controllerProduto" type="submit" class="btn btn-dark" href="" value="Toddy">                            
+                                </div>
+                                
 
-                        <img src="img/img2.jpg" class="card-img-top">
-                        <div class="card-body">
+                            </div>
 
-                            <h4 class="card-title">Produto 2</h4>   
-                            <h6 class="card-subtitle text-muted mb-2">Especificação do Produto</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam.</p>
-                        
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Produto 1</li>
-                            <li class="list-group-item">Produto 2</li>
-                            <li class="list-group-item">Produto 3</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="">Ver detalhes</a>                            
-                        </div>
-                        
+                    </form>
+                </div><!--FIM ROW!! -->
 
-                    </div>
+            <?php } //fim ELSE?>
 
-                </div>
-
-                <div class="col-lg-4 col-sm-6">
-                    
-                    <div class="card">
-
-                        <img src="img/img3.jpg" class="card-img-top">
-                        <div class="card-body">
-
-                            <h4 class="card-title">Produto 3</h4>   
-                            <h6 class="card-subtitle text-muted mb-2">Especificação do Produto</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam.</p>
-                        
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Produto 1</li>
-                            <li class="list-group-item">Produto 2</li>
-                            <li class="list-group-item">Produto 3</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="">Ver detalhes</a>                            
-                        </div>
-                        
-
-                    </div>
-
-                </div>
-
-            </div><!--FIM ROW!! -->
-        
         </div><!--CONTAINER!! -->
         
         <!-- JavaScript (Opcional) -->
         <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-        <!-- Usar popper dentro da pasta umd -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

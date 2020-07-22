@@ -22,6 +22,7 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
     }
     if($controller === 'Esqueci minha Senha'){
         $_SESSION['controleAdm'] = "esqueceu";
+        header('location:esqueciSenha.php');
     }
 
 }else{

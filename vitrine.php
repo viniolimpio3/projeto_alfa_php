@@ -28,11 +28,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="vitrine.php">Vitrine</a>
                         </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="pedidos.php">Meus Pedidos</a>
-                        </li>
-
+                        <?php if(include 'isLogged.php'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pedidos.php">Meus Pedidos</a>
+                            </li>
+                        <?php endif?>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <div class="login" style="color: #fff !important;">

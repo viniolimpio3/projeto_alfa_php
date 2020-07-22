@@ -194,7 +194,6 @@ if(isset($_REQUEST['delete'])){
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <meta http-equiv="refresh" content="30">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -229,17 +228,17 @@ if(isset($_REQUEST['delete'])){
             <table class="table">
                 <thead>
                     <tr>
-                        <strong>
-                            <td>Nome Produto</td>
-                            <td>Valor Produto</td>
-                            <td>Número de Parcelas</td>
-                            <td>Valor Parcelas</td>
-                            <td>Forma de Pagamento</td>
-                            <td>ID Produto</td>
-                            <td>Status do Pedido</td>
-                            <td>Deletar</td>
+                        
+                        <th scope="col">Nome Produto</th>
+                        <th scope="col">Valor Produto (R$)</th>
+                        <th scope="col">Número de Parcelas</th>
+                        <th scope="col">Valor Parcelas(R$)</th>
+                        <th scope="col">Forma de Pagamento</th>
+                        <th scope="col">ID Produto</th>
+                        <th scope="col">Status do Pedido</th>
+                        <th scope="col">Deletar</th>
 
-                        </strong>
+
                     </tr>
                 </thead>
                 <tbody>

@@ -18,8 +18,7 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
     }
     if ($controller == "Cadastrar"){
         $_SESSION["controleAdm"] = "novo";
-        //Será marcado como novo para sabermos que o user não tem cadastro
-        echo "<a href=\"CadastroAdm.php\">Cadastrar</a>"; 
+        header('location:cadastro.php');
     }
     if($controller === 'Esqueci minha Senha'){
         $_SESSION['controleAdm'] = "esqueceu";
@@ -27,6 +26,7 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
 
 }else{
 ?> 
+<h2>Login Sistema Projeto Alpha</h2>
 <form action="login.php?enviou=sim" method ="POST">
     <label for="usuario_login"> Usuário: <br>  </label>
     <input type="text" placeholder="Preencher E-mail" name="usuario_login"><br><p>

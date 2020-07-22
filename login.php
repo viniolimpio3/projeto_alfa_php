@@ -40,6 +40,7 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
 
 
 </form>
+<a href="vitrine.php">Voltar para a vitrine</a>
 <?php 
 }
 ?>

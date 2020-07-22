@@ -71,7 +71,7 @@ if(include 'isLogged.php'){
 
 
                         echo "<script> alert('Pedido resgistrado com sucesso!')</script>";
-                        //ESSA É A TELA "PEDIDOS"
+                        //ESSA É A TELA "pagamentos"
                         echo '<h1>Detalhes do pedido:</h1>';
                         echo '
                             Nome do Produto: '.$produto_s['nome'].' <br>
@@ -84,7 +84,7 @@ if(include 'isLogged.php'){
  
                         ';
 
-                        echo ('<a href="pedidos.php">Ver página de pedidos</a>'); 
+                        echo ('<a href="pedidos.php">Gerenciar pedidos</a>'); 
 
                     } else{
                         echo "Erro ao confirmar pedido";

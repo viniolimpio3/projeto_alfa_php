@@ -69,7 +69,9 @@ if(include 'isLogged.php'){
                         $produto_s = $_SESSION['produto'];
                         $pedido_s = $_SESSION['pedido'];
 
+
                         echo "<script> alert('Pedido resgistrado com sucesso!')</script>";
+                        //ESSA É A TELA "PEDIDOS"
                         echo '<h1>Detalhes do pedido:</h1>';
                         echo '
                             Nome do Produto: '.$produto_s['nome'].' <br>

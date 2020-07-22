@@ -6,6 +6,8 @@ if(!(include 'isLogged.php')){
 
 include 'conexao.php';
 
+
+
 $valorProduto;//select da table pedido
 
 $nomeCliente = $_SESSION['cliente']['name'];
@@ -15,6 +17,37 @@ $idCliente = $_SESSION['cliente']['id'];
 $numParcelas;
 $formaPagamento;
 $valorParcela;
+
+
+function updateCliente($id, $conexao){
+    $select = "SELECT * from cliente WHERE id_cliente=?";
+    $other = $conexao->prepare($select);
+    $other->bindParam(1,$id);
+    echo "<script> console.log('chegou')</script>"; 
+
+    if($other->execute()){
+        if($other->rowCount()>0){
+            while($row = $other->fetch(PDO::FETCH_OBJ)){
+                $id_cliente = $row->id_cliente;
+                $name_cliente = $row->name_cliente;
+                $end_cliente = $row->end_cliente;//endereço
+                $login = $row->user_cliente;
+                $senha = sha1($row->senha_cliente);
+                $cliente = array(
+                    'id' => $id_cliente,
+                    'name' => $name_cliente,
+                    'ende' => $end_cliente,
+                    'email' => $login,
+                    'senha' => $senha
+                );
+                $_SESSION['cliente'] = $cliente;
+            }
+        }
+    }else{
+        echo "<script> console.log('não executou 2º Select.')</script>"; 
+
+    }
+}
 
 
 
@@ -45,12 +78,18 @@ try{
                 $idProduto = $row->fk_id_prod;
                 // array_push($idProdutos, $idProduto); 
 
+                $status = $row->status_pedido;
+
+                $idPedido = $row->id_pedido;
+
                 $pedidos = array(
                     'valorProduto' =>$valorProduto,
                     'numParcelas' => $numParcelas,
                     'valorParcela' => $valorParcela,
                     'formaPagamento' => $formaPagamento,
-                    'idProduto' =>$idProduto
+                    'idProduto' =>$idProduto,
+                    'status' => $status,
+                    'id'=> $idPedido
                 );
                 array_push($arrPedidos, $pedidos);
                 
@@ -83,12 +122,80 @@ try{
     echo "<A href=\"vitrine.php\">Retornar à vitrine</A>";
 }
 
+
+//Rota de update dos campos "name_cliente" e "end_cliente" em "cliente"
+if(isset($_REQUEST['update']) and $_REQUEST['update'] === 'ok' and isset($_POST['nome']) and isset($_POST['ende'])){
+
+    $newName = $_POST['nome'];
+    $newAddress = $_POST['ende'];
+
+    $query_update = 'UPDATE cliente SET name_cliente=?, end_cliente=? WHERE id_cliente=?';
+    $command=$conexao->prepare($query_update);
+    $command->bindParam(1, $newName);
+    $command->bindParam(2, $newAddress);
+    $command->bindParam(3, $idCliente);
+
+    try{
+        if($command->execute()){
+            if($command->rowCount() > 0){
+
+                updateCliente($idCliente, $conexao);
+                echo "<script> alert('Dados atualizados com sucesso.')</script>"; 
+                
+            }else{
+                echo "<script> console.log('não retornou linhas.')</script>"; 
+            }
+        }else{
+            echo "<script> alert('Não foi possível atualizar seus dados!\nTente novamente mais tarde.')</script>"; 
+        }
+    }catch(Exception $e){
+        echo "$e"; 
+        
+    }
+
+
+}
+
+//ROTA DELETE DE PEDIDOS
+function deletePedido($id_pedido, $conn){
+    $query_delete = "DELETE FROM pedido WHERE id_pedido =?";
+    $cmd = $conn->prepare($query_delete);
+    $cmd->bindParam(1, $id_pedido);
+    if($cmd->execute()){
+        if($cmd->rowCount() > 0){
+            echo "<script> console.log('foi.')</script>"; 
+            echo "<script> alert('Pedido deletado com sucesso.')</script>"; 
+            header('location:pedidos.php');
+        }else{
+            echo "<script> console.log('não retornou linhas.')</script>"; 
+        }
+    }else{
+        echo "<script> console.log('não executou.')</script>"; 
+
+    }
+}
+
+if(isset($_REQUEST['delete'])){
+    deletePedido($_REQUEST['delete'], $conexao);
+}
+
+
+
+
 ?>
+<script>    
+    //RETIRAR QUERIES QUANDO DER UM REFRESH
+    if(typeof window.history.pushState == 'function') {
+        window.history.pushState({}, "Hide", '<?php echo $_SERVER['PHP_SELF'];?>');
+    }
+</script>
 
 
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
+        <meta http-equiv="refresh" content="30">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GERENCIAR PEDIDOS | Projeto Alpha</title>
@@ -96,15 +203,15 @@ try{
     </head>
     <body>
         <div class="container">
-            <h1>Olá <?php echo $nomeCliente ?>, você possui um total de <?=  isset($numPedidos) ? "$numPedidos":"0"  ?> pedidos </h1>
+            <h1>Olá <?php echo $_SESSION['cliente']['name'] ?>, você possui um total de <?=  isset($numPedidos) ? "$numPedidos":"0"  ?> pedidos </h1>
             <br>
             <h3>Seus dados:</h3>
             <form action="pedidos.php?update=ok" method="POST">
                 <label for="nome">Seu Nome:</label>
-                <input type="text" name="nome" id="nome" value="<?php echo $nomeCliente ?>" readonly="readonly"> <br> <br>
+                <input type="text" name="nome" id="nome" value="<?php echo $_SESSION['cliente']['name'] ?>" readonly="readonly"> <br> <br>
 
                 <label for="ende">Seu Endereço:</label>
-                <input type="text" name="ende" id="ende" value="<?php echo $endeCliente ?>" readonly="readonly"><br><br>
+                <input type="text" name="ende" id="ende" value="<?php echo $_SESSION['cliente']['ende'] ?>" readonly="readonly"><br><br>
 
                 <button id="alterar" type="button">Alterar</button>
                 
@@ -123,11 +230,15 @@ try{
                 <thead>
                     <tr>
                         <strong>
+                            <td>Nome Produto</td>
                             <td>Valor Produto</td>
                             <td>Número de Parcelas</td>
                             <td>Valor Parcelas</td>
                             <td>Forma de Pagamento</td>
                             <td>ID Produto</td>
+                            <td>Status do Pedido</td>
+                            <td>Deletar</td>
+
                         </strong>
                     </tr>
                 </thead>
@@ -136,6 +247,17 @@ try{
                         
                         <?php for ($i=0; $i < $numPedidos; $i++):?>
                             <tr>
+                                <td>
+                                    <?php 
+                                        if($arrPedidos[$i]['idProduto'] === '1')
+                                            echo 'Toddy';
+                                        if($arrPedidos[$i]['idProduto'] === '2')
+                                            echo 'Notebook HP';
+                                        if($arrPedidos[$i]['idProduto'] === '3')
+                                            echo 'Tv Samsung';
+
+                                    ?>
+                                </td>
                                 <td>
                                     <?php
                                         echo $arrPedidos[$i]['valorProduto'];
@@ -160,6 +282,22 @@ try{
                                     <?php
                                         echo $arrPedidos[$i]['idProduto'];
                                     ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        echo $arrPedidos[$i]['status'];
+                                    ?>
+                                </td>
+                                <td>
+                                    <a 
+                                        class="btn btn-danger"
+                                        href="pedidos.php?delete=<?php echo $arrPedidos[$i]['id']?>" 
+                                        id="delete_id_<?php echo $arrPedidos[$i]['id']?>"
+                                    >
+                                        <span class="fa fa-trash" style="color:#fff">
+                                            
+                                        </span>
+                                    </a>
                                 </td>
                             </tr>
                         <?php endfor ?>

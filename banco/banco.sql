@@ -26,7 +26,7 @@ create table if not exists pedido(
     fk_id_prod int not null,
     forma_pag varchar(15) NOT NULL,
     n_parcelas int(2) NOT NULL,
-    valor_parcelas decimal(7,0) NOT NULL
+    valor_parcelas decimal(7,0) NOT NULL,
     primary key(id_pedido),
     foreign key( fk_id_prod ) references produto (id_prod),
     foreign key( fk_id_cliente ) references cliente (id_cliente)
@@ -34,10 +34,8 @@ create table if not exists pedido(
 
 insert into produto(name_prod, value_prod, desc_prod)values
 ('Toddy', 12.00, 'Achocolatado'),
-('Omo', 12.00, 'Produto de Limpeza'),
 ('Notebook HP', 900.00, 'Eletrônicos'),
-('TV Samsung', 1300.00, 'Eletrônicos'),
-('Liquidificador', 130.00, 'Eletroeletrônicos');
+('TV Samsung', 1300.00, 'Eletrônicos');
 
 insert into cliente(name_cliente, end_cliente, user_cliente, senha_cliente)values
 ('Vinícius','Rua das Abobrinhas, 123', 'vini@any.com', sha1('senha')),

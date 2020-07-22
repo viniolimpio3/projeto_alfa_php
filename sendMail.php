@@ -38,8 +38,8 @@ function smtpmailer($para, $de, $de_nome, $assunto, $corpo) {
 	$mail->SMTPSecure = 'tls';	// SSL REQUERIDO pelo GMail
 	$mail->Host = 'smtp.gmail.com';	// SMTP utilizado
 	$mail->Port = 587;  		// A porta 587 deverá estar aberta em seu servidor
-	$mail->Username = 'drive.teologia@gmail.com';
-	$mail->Password = 'Chaves__654';
+	$mail->Username = GUSER;
+	$mail->Password = GPWD;
 	$mail->SetFrom($de, $de_nome);
 	$mail->Subject = $assunto;
 	$mail->Body = $corpo;
@@ -56,7 +56,7 @@ function smtpmailer($para, $de, $de_nome, $assunto, $corpo) {
 // Insira abaixo o email que irá receber a mensagem, o email que irá enviar (o mesmo da variável GUSER), 
 // o nome do email que envia a mensagem, o Assunto da mensagem e por último a variável com o corpo do email.
 
-$enviou = smtpmailer($email, 'drive.teologia@gmail.com', 'Vinícius Olímpio', 'Projeto Alpha | Recuperação de senha ', $corpo);
+$enviou = smtpmailer($email, 'viniolimpio3@gmail.com', 'Vinícius Olímpio', 'Projeto Alpha | Recuperação de senha ', $corpo);
 
 
  if ($enviou) {

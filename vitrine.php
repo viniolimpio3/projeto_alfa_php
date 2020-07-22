@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -24,26 +25,14 @@
                 <div class="navbar-collapse collapse" id="navbarSite">
                     
                     <ul class="navbar-nav mr-auto"><!-- mr : margin right!!! -->
-
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Início</a>
+                            <a class="nav-link" href="vitrine.php">Vitrine</a>
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Perfil</a>
+                            <a class="nav-link" href="pedidos.php">Meus Pedidos</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Serviços</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Depoimentos</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contatos</a>
-                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <div class="login" style="color: #fff !important;">

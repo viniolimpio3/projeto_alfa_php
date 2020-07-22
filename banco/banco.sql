@@ -19,11 +19,14 @@ create table if not exists cliente(
 
 create table if not exists pedido(
 	id_pedido int not null unique auto_increment,
-    data_pedido date not null unique,
+    data_pedido date not null,
     valor_pedido numeric(7,2) not null,
-    status_pedido varchar(35) not null unique,
-    fk_id_cliente int not null unique,
-    fk_id_prod int not null unique,
+    status_pedido varchar(35) not null,
+    fk_id_cliente int not null,
+    fk_id_prod int not null,
+    forma_pag varchar(15) NOT NULL,
+    n_parcelas int(2) NOT NULL,
+    valor_parcelas decimal(7,0) NOT NULL
     primary key(id_pedido),
     foreign key( fk_id_prod ) references produto (id_prod),
     foreign key( fk_id_cliente ) references cliente (id_cliente)

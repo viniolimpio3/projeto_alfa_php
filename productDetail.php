@@ -9,7 +9,7 @@ if(isset($_SESSION['selectedProduct']) and $_SESSION['selectedProduct'] !== ''){
 
     //select produto
     include 'conexao.php';
-    $query = "select value_prod, desc_prod FROM produto WHERE name_prod=? LIMIT 1";
+    $query = "select value_prod, desc_prod,id_prod FROM produto WHERE name_prod=? LIMIT 1";
     $cmd=$conexao->prepare($query);		
     $cmd->bindParam(1, $produto_vitrine);
     try{
@@ -21,11 +21,12 @@ if(isset($_SESSION['selectedProduct']) and $_SESSION['selectedProduct'] !== ''){
                     
                     $valorProd = $row->value_prod;
                     $descProd = $row->desc_prod;
-
+                    $idProd = $row->id_prod;
                     $produto = array(
                         'nome' => $_SESSION['selectedProduct'],
                         'valor' => $valorProd,
-                        'desc' =>$descProd
+                        'desc' =>$descProd,
+                        'id'=> $idProd
                     ); 
                     $_SESSION['produto'] = $produto;
                 }
@@ -86,9 +87,6 @@ if(isset($_SESSION['selectedProduct']) and $_SESSION['selectedProduct'] !== ''){
     <?php
     }//fim
 }else{//fim isset produto vitrine
-    session_destroy();
-
-    echo '';
 
     echo '<h1>Nenhum Produto selecionado</h1> <br>';
     echo '

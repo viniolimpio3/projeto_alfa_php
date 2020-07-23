@@ -6,22 +6,31 @@ $email = $_SESSION['email_recover'];
 
 
 
-// $Nome		= $_POST["Nome"];	// Pega o valor do campo Nome
-// $Fone		= $_POST["Fone"];	// Pega o valor do campo Telefone
-// $Email		= $_POST["Email"];	// Pega o valor do campo Email
-// $Mensagem	= $_POST["Mensagem"];	// Pega os valores do campo Mensagem
-
 include "env_mail.php";  
 
 $para = $email; 
 $de = GUSER;
-$de_nome = 'Sistema Projeto Alpha';
-$assunto = '[Projeto Alpha] | Recuperação de Senha'; 
+$de_nome = 'Sistema Projeto Alpha ';
+$assunto = '[Projeto Alpha] | Recuperação de Senha '; 
 
 $corpo="
-    <h1>Recuperação de senha do sistema Projeto alpha</h1>
-    <p>Para cadastrar uma nova senha, entre no link abaixo</p>
-    <a href='https://localhost/etec/php_aulas/updatePass.php'>Clique aqui</a>
+	<head> 
+		<meta charset='utf-8' >
+        <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'>
+
+	</head>
+
+	<body>
+		<div class='container'>
+			<h1>Recuperação de senha do sistema Projeto alpha</h1>
+			<p>Para cadastrar uma nova senha, entre no link abaixo</p>
+			<a href='http://localhost/etec/php_aulas/projetoAlfa/updatePass.php'>Clique aqui</a>
+			
+			<br>
+
+			<p>Caso você não tenha feito essa requisição, desconsidere este email.</p>
+		</div>
+	</body>
 ";
 
 
@@ -43,7 +52,9 @@ function smtpmailer($para, $de, $de_nome, $assunto, $corpo) {
 	$mail->SetFrom($de, $de_nome);
 	$mail->Subject = $assunto;
 	$mail->Body = $corpo;
+	$mail->CharSet="UTF-8";
 	$mail->AddAddress($para);
+	$mail->IsHTML(true);
 	if(!$mail->Send()) {
 		$error = 'Mail error: '.$mail->ErrorInfo; 
 		return false;
@@ -56,12 +67,14 @@ function smtpmailer($para, $de, $de_nome, $assunto, $corpo) {
 // Insira abaixo o email que irá receber a mensagem, o email que irá enviar (o mesmo da variável GUSER), 
 // o nome do email que envia a mensagem, o Assunto da mensagem e por último a variável com o corpo do email.
 
-$enviou = smtpmailer($email, 'viniolimpio3@gmail.com', 'Vinícius Olímpio', 'Projeto Alpha | Recuperação de senha ', $corpo);
+$enviou = smtpmailer($email, GUSER, 'Vinícius Olímpio', $assunto, $corpo);
 
 
  if ($enviou) {
+	return true;
+	// Header("location:vitrine.php"); // Redireciona para uma página de obrigado.
 
-	Header("location:http://www.dominio.com.br/obrigado.html"); // Redireciona para uma página de obrigado.
-
+}else{
+	return false;
 }
 if (!empty($error)) echo $error;

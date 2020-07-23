@@ -11,16 +11,16 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
         session_start();
 
     $email = $_POST ["email"]; 
-    $_SESSION['email_recover'] = $email;
     // header('location:sendMail.php');
     if(include 'sendMail.php'){
-
+        $_SESSION['email_recover'] = $email;
+        $_SESSION['auth_update_pass'] = true;
         echo '
             <script> alert("Um email foi enviado para '.$email.' "); </script>
         ';
         echo '<a href="vitrine.php">Voltar para a vitrine</a>';
 
-        $_SESSION['auth_update_pass'] = true;//controller que vai ser usado na pagina updatePass.php, como autorização 
+        //controller que vai ser usado na pagina updatePass.php, como autorização 
         // se esse controller existir, o user poderá trocar a senha dele
         // header('location:vitrine.php');
 

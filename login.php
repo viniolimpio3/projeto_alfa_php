@@ -3,6 +3,9 @@
 <head>
 	<title></title>
 	<meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 <?php 
@@ -27,6 +30,7 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
 
 }else{
 ?> 
+<div class="form-page">
 <h2>Login Sistema Projeto Alpha</h2>
 <form action="login.php?enviou=sim" method ="POST">
     <label for="usuario_login"> Usuário: <br>  </label>
@@ -35,13 +39,16 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
     <label for=""> Senha: <br></label>
     <input type="password" placeholder="Preencher Senha" name="senha_login" maxlength="8" ><br><p>
 
-    <input name="btnController" type="submit" value="Logar">
-    <input name="btnController" type="submit" value="Cadastrar">
-    <input name="btnController" type="submit" value="Esqueci minha Senha">
+    <button class="btn btn-dark"name="btnController" type="submit" value="Logar"> Logar </button>
+    <button class="btn btn-dark"name="btnController" type="submit" value="Cadastrar"> Cadastrar</button>
+    <button class="btn btn-dark"name="btnController" type="submit" value="Esqueci minha Senha"> Esqueci minha senha</button>
 
 
 </form>
 <a href="vitrine.php">Voltar para a vitrine</a>
+
+</div>
+
 <?php 
 }
 ?>
@@ -49,4 +56,5 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
       
   
 </body>
+
 </html>

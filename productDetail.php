@@ -54,31 +54,35 @@ if(isset($_SESSION['selectedProduct']) and $_SESSION['selectedProduct'] !== ''){
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+            <link rel="stylesheet" href="./css/main.css">
             <title>DETALHE PRODUTO | Projeto Alpha</title>
         </head>
         <body>
-            <h1>Nome do Produto: <?php echo $produto_vitrine ?> </h1>
+            <div class="productDetail">
+            <h2>Nome do Produto: <?php echo $produto_vitrine ?> </h1>
             <h2>Descrição Produto: <?php echo $produto['desc'] ?></h2>
             <h2>Valor Produto: <?php echo $produto['valor'] ?></h2>
-
+            
             <!-- EXIBIR IMAGEM DO PRODUTO !!!! GALERA DO FRONTEND!!!!!!!!!!!! -->
             <?php if($produto_vitrine==='Toddy'):?>
 
-                <!-- HTML PARA EXIBIR IMAGEM DO TODDY -->
+                <img style="width: 30%; margin-bottom: 20px" src="img/toddy.jpeg" alt="">
 
             <?php endif ?>
             <?php if($produto_vitrine === 'Notebook HP'): ?>
-                <!-- HTML PARA EXIBIR IMAGEM DO NOTEBOOK -->
+                <img style="width: 30%; margin-bottom: 20px" src="img/notebook.jpg" alt="">
             <?php endif ?>
             <?php if($produto_vitrine === 'TV Samsung'): ?>
-                <!-- HTML PARA EXIBIR IMAGEM DA TV -->
-            <?php endif ?>
+                <img style="width: 30%; margin-bottom: 20px;" src="img/televisão.jpeg" alt="">
+            <?php endif ?> 
 
             <form action="productDetail.php?comprar=sim" method="POST">
 
-                <input type="submit" name="comprarController" value="comprar"/>
+                <button class="btn btn-dark" type="submit" name="comprarController" value="comprar"> Comprar </button>
 
             </form>
+            </div>
         </body>
     </html>
 

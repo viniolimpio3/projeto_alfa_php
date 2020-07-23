@@ -199,6 +199,7 @@ if(isset($_REQUEST['delete'])){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GERENCIAR PEDIDOS | Projeto Alpha</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/main.css">
     </head>
     <body>
         <div class="container">
@@ -212,14 +213,14 @@ if(isset($_REQUEST['delete'])){
                 <label for="ende">Seu Endereço:</label>
                 <input type="text" name="ende" id="ende" value="<?php echo $_SESSION['cliente']['ende'] ?>" readonly="readonly"><br><br>
 
-                <button id="alterar" type="button">Alterar</button>
+                <button class="btn btn-dark" id="alterar" type="button">Alterar</button>
                 
-                <input type="submit" style="display: none;" name="submit" id="submit" value="Registrar novos dados"><br>
-                <button type="button" style="display: none;" id="cancel">Cancelar</button>
+                <button class="btn btn-dark"type="submit" style="display: none;" name="submit" id="submit" value="Registrar novos dados"> Registrar novos dados </button> <br>
+                <button class="btn btn-danger" type="button" style="display: none;" id="cancel">Cancelar</button>
 
 
             </form>
-
+            <br> <br>
             <a href="vitrine.php">Voltar para a Vitrine</a>
 
             <br><br>

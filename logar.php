@@ -34,15 +34,15 @@ if ($cmd->execute()){
       
       $_SESSION["controleAdm"] = "logado";
 
-      echo("Parabéns " .$cliente['name'].", você logou com sucesso! <br> <br> <br>");
+      echo('<center> <h2 style="margin-top: 200px; font-family: Ubuntu;"> Parabéns ' .$cliente['name'].', você logou com sucesso! <h2> </center> <br> <br> <br>');
       if(isset($_SESSION['produto'])){//se existir a sessão de produto - ir para pagamento.php
-        echo('<a style="text-decoration:none; background:#cecece; padding:20px" href="pagamento.php"> Prosseguir para a forma de pagamento do produto: ' . $_SESSION['produto']['nome'] .'</a>');
-        echo '<br> <br><br> ou <br><br><br>  ';
-        echo('<a style="text-decoration:none; background:#cecece; padding:20px" href="vitrine.php"> Voltar para a Vitrine. </a>');
+        echo('<center> <a style="text-decoration:none; border-radius: 10px; font-family: Roboto; background: #212121; color: #ffffff; padding:20px" href="pagamento.php"> Prosseguir para a forma de pagamento do produto: ' . $_SESSION['produto']['nome'] .'</a> </center>');
+        echo '<center> <br> <br><br> ou <br><br><br> </center>  ';
+        echo('<center> <a style="text-decoration:none; border-radius: 10px; font-family: Roboto; background: #212121; color: #ffffff; padding:20px" href="vitrine.php"> Voltar para a Vitrine. </a> </center> ');
 
 
       }else{//se não, ir para a vitrine
-        echo('<a style="text-decoration:none; background:#cecece; padding:20px" href="vitrine.php"> Voltar para a Vitrine. </a>');
+        echo('<center> <a style="text-decoration:none; border-radius: 10px; font-family: Roboto; background: #212121; color: #ffffff; padding:20px" href="vitrine.php"> Voltar para a Vitrine. </a> </center> ');
       }
 
     }

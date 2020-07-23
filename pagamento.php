@@ -2,7 +2,10 @@
 <html>
 <head>
 	<title></title>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 
@@ -72,7 +75,7 @@ if(include 'isLogged.php'){
 
                         echo "<script> alert('Pedido resgistrado com sucesso!')</script>";
                         //ESSA É A TELA "pagamentos"
-                        echo '<h1>Detalhes do pedido:</h1>';
+                        echo ' <div class="productDetail"> <h1>Detalhes do pedido:</h1>';
                         echo '
                             Nome do Produto: '.$produto_s['nome'].' <br>
                             Descrição do Produto: '.$produto_s['desc'].' <br>
@@ -81,10 +84,11 @@ if(include 'isLogged.php'){
                             Valor da Parcela: '.$pedido_s['valor_parcela'].' <br>
                             Status do Pedido: ' .$pedido_s['status'].' <br>
                             Forma de Pagamento: ' .$pedido_s['forma_pag'].' <br>
+                            
  
                         ';
 
-                        echo ('<a href="pedidos.php">Gerenciar pedidos</a>'); 
+                        echo ('<a style="margin-top: 40px;" class="btn btn-dark" href="pedidos.php">Gerenciar pedidos</a> </div>'); 
 
                     } else{
                         echo "Erro ao confirmar pedido";
@@ -100,54 +104,58 @@ if(include 'isLogged.php'){
             }
         } else { // Se usuário ainda não clicou no botão de enviar, mostra o formulário na página:
             ?>
-            <form id="form" action="pagamento.php?confirma=ok" method="POST">
-                <p>Nome do produto: <?php echo $name?></p>
-                <div class="input-group">
-                    <label for="forma_pag">Forma de Pagamento:</label>
-                    <select required name="forma_pag" id="forma_pag">
-                        <option value="default">-</option>
-                        <option value="boleto">BOLETO</option>
-                        <option value="credito">CARTÃO DE CRÉDITO</option>
-                        <option value="debito">CARTÃO DE DÉBITO</option>
+            <div class="form-page pagamento">
+                <form id="form" action="pagamento.php?confirma=ok" method="POST">
+                    <h2>Produto: <?php echo $name?></h2>
+                    <div class="input-group">
+                        <label for="forma_pag">Forma de Pagamento:</label>
+                        <select required name="forma_pag" id="forma_pag">
+                            <option value="default">-</option>
+                            <option value="boleto">BOLETO</option>
+                            <option value="credito">CARTÃO DE CRÉDITO</option>
+                            <option value="debito">CARTÃO DE DÉBITO</option>
 
-                    </select>
-                </div> <br>
+                        </select>
+                    </div> <br>
 
 
-                <div style="display: none;" id="parcelasGroup" class="input-group">
-                    <label for="n_parcelas">Número de Parcelas</label>
-                    <select name="n_parcelas" id="n_parcelas">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
-                    
-                </div> <br>
-
-                <label for="valorParcela" >Valor da Parcela:</label>
-                <input type="text" readonly value="<?php echo $price ?>" id="valorParcela" name="valorParcela"  > <br> <br>
-
-                <label for="valorTotal" >Valor Total:</label>
-                <input type="text" readonly value="<?php echo $price ?>" id="valorTotal" name="valorTotal"  > <br> <br>
-
-                <input type="submit" name="confirma" value="Confirmar Pagamento"> <br> <br>
+                    <div style="display: none;" id="parcelasGroup" class="input-group">
+                        <label for="n_parcelas">Número de Parcelas:</label>
+                        <select name="n_parcelas" id="n_parcelas">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
                         
-                <input type="reset" name="Limpar" value="Redefinir"><br>
-                        
-                <label style="display: none;" id="aviso">Preenchar os campos, para enviar! </label> <br> <br>	
+                    </div> <br>
 
-                <a href="vitrine.php">Voltar para a vitrine</a>
+                    <label for="valorParcela" >Valor da Parcela:</label>
+                    <input type="text" readonly value="<?php echo $price ?>" id="valorParcela" name="valorParcela"  > <br> <br>
 
-            </form>
+                    <label for="valorTotal" >Valor Total:</label>
+                    <input type="text" readonly value="<?php echo $price ?>" id="valorTotal" name="valorTotal"  > <br> <br>
+
+                    <center>
+                    <button style="width: 400px; margin-bottom: 0;" class="btn btn-dark" type="submit" name="confirma" value="Confirmar Pagamento">Confirmar Pagamento </button> <br> <br>
+                            
+                    <button style="width: 400px; margin-top: 0;" class="btn btn-dark" type="reset" name="Limpar" value="Redefinir"> Redefinir </button> <br>
+                    </center>
+                    <label style="display: none;" id="aviso">Preenchar os campos, para enviar! </label> <br> <br>	
+
+                    <a href="vitrine.php">Voltar para a vitrine</a>
+
+                </form>
+            </div>
+            
         <?php
         }//fim else - "user não clicou no botão confirma"
     }else{//fim se o produto existir na session

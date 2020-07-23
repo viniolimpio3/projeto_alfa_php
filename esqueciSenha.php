@@ -2,7 +2,11 @@
 <html>
 <head>
 	<title></title>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
+    
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 <?php 
@@ -36,17 +40,19 @@ if(isset($_REQUEST['enviou']) and ($_REQUEST['enviou'] == 'sim') and isset($_POS
     
 
 }else{
-?> 
-<h2>Esqueceu senha</h2>
+?> <div class="form-page"> 
+    <h2>Esqueceu senha</h2>
 <p>Informe-nos seu email, para que possamos entrar em contato.</p>
 <form action="esqueciSenha.php?enviou=sim" method ="POST">
     <label for="email"> Email: <br>  </label>
     <input type="text" required placeholder="Preencher E-mail" name="email"><br><p>
-
-    <input name="btnController" type="submit" value="Enviar">
-
+    <center>
+    <input class="btn btn-dark" name="btnController" type="submit" value="Enviar">
+    </center>
 </form><br><br>
 <a href="login.php">Voltar para o Login</a>
+</div>
+
 <?php 
 }
 ?>

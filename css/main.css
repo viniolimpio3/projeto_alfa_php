@@ -1,0 +1,87 @@
+*{
+    margin: 0px;
+    padding: 0px;
+
+}
+
+form input{
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #c3c3c3;
+    margin: 5px;
+}
+form select {
+    height: 50px;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #c3c3c3;
+    background: #ffffff;
+}
+
+form textarea{
+    border: 1px solid #c3c3c3;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+form button {
+    padding: 10px;
+    height: 40px;
+}
+
+form label {
+    margin-right: 35px;
+    width: 50px;
+}
+
+form a {
+    font-style: none;
+    text-decoration: none;
+    margin-top: 10px;
+}
+h2{
+    font-family: Ubuntu;
+    margin-bottom: 30px;
+}
+
+.form-page{
+    padding: 30px;
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    align-content: space-around;
+    background-color: #c8c8c8;
+    border-radius: 20px;
+}
+
+.pagamento label{
+    width: 150px;
+    font-size: 14px;
+    margin: 0;
+    
+}
+
+.productDetail{
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    padding: 40px;
+    background-color: #c8c8c8;
+    border-radius: 20px;
+}
+

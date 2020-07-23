@@ -2,7 +2,10 @@
 <html>
 <head>
 	<title></title>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 
@@ -62,6 +65,7 @@ if(isset($_REQUEST['valor']) and ($_REQUEST['enviou'] === 'ok')) {
     }
 } else { // Se usuário ainda não clicou no botão de enviar, mostra o formulário na página:
     ?>
+    <div class="form-page"> 
     <form name="form1" action="contato.php?enviou=ok" method="POST">
         
         <div class="input-group">
@@ -91,14 +95,15 @@ if(isset($_REQUEST['valor']) and ($_REQUEST['enviou'] === 'ok')) {
             <textarea name="Mensagem" rows="8" cols="40"></textarea><br>
         </div>
 
-        <input type="submit" name="Enviar" value="Enviar">
+        <input class="btn btn-dark" type="submit" name="Enviar" value="Enviar">
                 
-        <input type="reset" name="Limpar" value="Redefinir"><br>
+        <input class="btn btn-dark" type="reset" name="Limpar" value="Redefinir"><br>
                 
         <label id="aviso">Preenchar os campos, para enviar!<br>	
-        
     
     </form>
+    </div>
+    
 <?php
 }
 ?>

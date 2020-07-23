@@ -13,7 +13,20 @@ form input{
     margin: 5px;
 }
 form select {
-    height: 30px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #c3c3c3;
+    background: #ffffff;
+}
+
+form textarea{
+    border: 1px solid #c3c3c3;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 5px;
 }
 
 form button {
@@ -43,6 +56,9 @@ h2{
     left: 30%;
     display: flex;
     flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
     align-content: space-around;
     background-color: #c8c8c8;
     border-radius: 20px;
@@ -54,3 +70,18 @@ h2{
     margin: 0;
     
 }
+
+.productDetail{
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    padding: 40px;
+    background-color: #c8c8c8;
+    border-radius: 20px;
+}
+

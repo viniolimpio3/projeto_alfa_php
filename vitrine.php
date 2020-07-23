@@ -91,7 +91,7 @@
                             
                             <div class="card">
 
-                                <img src="img/img1.jpg" class="card-img-top">
+                                <img style="width: 95%" src="img/notebook.jpg" class="card-img-top">
                                 <div class="card-body">
 
                                     <h4 class="card-title">Notebook HP</h4>   
@@ -120,7 +120,7 @@
                             
                             <div class="card">
 
-                                <img src="img/img2.jpg" class="card-img-top">
+                                <img src="img/televisão.jpeg" class="card-img-top">
                                 <div class="card-body">
 
                                     <h4 class="card-title">Televisão Samsung</h4>   
@@ -146,7 +146,7 @@
                             
                             <div class="card">
 
-                                <img src="img/img3.jpg" class="card-img-top">
+                                <img style="width: 75%; margin-left: 40px;" src="img/toddy.jpeg" class="card-img-top">
                                 <div class="card-body">
 
                                     <h4 class="card-title">Toddy</h4>   

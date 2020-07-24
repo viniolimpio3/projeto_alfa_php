@@ -40,7 +40,7 @@ function smtpmailer($para, $de, $de_nome, $assunto, $corpo) {
 	global $error;
 	$mail = new PHPMailer();
 	$mail->IsSMTP();		// Ativar SMTP
-	$mail->SMTPDebug = 1;		// Debugar: 1 = erros e mensagens, 2 = mensagens apenas
+	$mail->SMTPDebug = 0;		// Debugar: 1 = erros e mensagens, 2 = mensagens apenas
 	$mail->SMTPAuth = true;		// Autenticação ativada
 	$mail->SMTPSecure = 'tls';	// SSL REQUERIDO pelo GMail
 	$mail->Host = 'smtp.gmail.com';	// SMTP utilizado

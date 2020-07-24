@@ -24,28 +24,35 @@ function updateCliente($id, $conexao){
     $other = $conexao->prepare($select);
     $other->bindParam(1,$id);
     echo "<script> console.log('chegou')</script>"; 
+    try{
 
-    if($other->execute()){
-        if($other->rowCount()>0){
-            while($row = $other->fetch(PDO::FETCH_OBJ)){
-                $id_cliente = $row->id_cliente;
-                $name_cliente = $row->name_cliente;
-                $end_cliente = $row->end_cliente;//endereço
-                $login = $row->user_cliente;
-                $senha = sha1($row->senha_cliente);
-                $cliente = array(
-                    'id' => $id_cliente,
-                    'name' => $name_cliente,
-                    'ende' => $end_cliente,
-                    'email' => $login,
-                    'senha' => $senha
-                );
-                $_SESSION['cliente'] = $cliente;
+    
+        if($other->execute()){
+            if($other->rowCount()>0){
+                while($row = $other->fetch(PDO::FETCH_OBJ)){
+                    $id_cliente = $row->id_cliente;
+                    $name_cliente = $row->name_cliente;
+                    $end_cliente = $row->end_cliente;//endereço
+                    $login = $row->user_cliente;
+                    $senha = sha1($row->senha_cliente);
+                    $cliente = array(
+                        'id' => $id_cliente,
+                        'name' => $name_cliente,
+                        'ende' => $end_cliente,
+                        'email' => $login,
+                        'senha' => $senha
+                    );
+                    $_SESSION['cliente'] = $cliente;
+                }
+            }else{
+                echo 'Erro ao atualizar seus dados.';
             }
-        }
-    }else{
-        echo "<script> console.log('não executou 2º Select.')</script>"; 
+        }else{
+            echo "<script> console.log('não executou 2º Select.')</script>"; 
 
+        }
+    }catch(Exception $e){
+        echo "<script> alert('Erro ao atualizar os dados')</script>"; 
     }
 }
 
@@ -149,8 +156,7 @@ if(isset($_REQUEST['update']) and $_REQUEST['update'] === 'ok' and isset($_POST[
             echo "<script> alert('Não foi possível atualizar seus dados!\nTente novamente mais tarde.')</script>"; 
         }
     }catch(Exception $e){
-        echo "$e"; 
-        
+        echo "<script> alert('Não foi possível atualizar seus dados!\nTente novamente mais tarde.')</script>"; 
     }
 
 
@@ -184,7 +190,7 @@ if(isset($_REQUEST['delete'])){
 
 ?>
 <script>    
-    //RETIRAR QUERIES QUANDO DER UM REFRESH
+    //RETIRAR QUERIES da url QUANDO DER UM REFRESH
     if(typeof window.history.pushState == 'function') {
         window.history.pushState({}, "Hide", '<?php echo $_SERVER['PHP_SELF'];?>');
     }
@@ -255,7 +261,6 @@ if(isset($_REQUEST['delete'])){
                                             echo 'Notebook HP';
                                         if($arrPedidos[$i]['idProduto'] === '3')
                                             echo 'Tv Samsung';
-
                                     ?>
                                 </td>
                                 <td>

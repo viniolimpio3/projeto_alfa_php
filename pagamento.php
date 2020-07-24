@@ -77,14 +77,15 @@ if(include 'isLogged.php'){
                         //ESSA É A TELA "pagamentos"
                         echo ' <div class="productDetail"> <h1>Detalhes do pedido:</h1>';
                         echo '
-                            Nome do Produto: '.$produto_s['nome'].' <br>
-                            Descrição do Produto: '.$produto_s['desc'].' <br>
-                            Valor Total do Produto: '.$produto_s['valor'].' <br>
-                            Número de Parcelas: '.$pedido_s['n_parcelas'].' <br>
-                            Valor da Parcela: '.$pedido_s['valor_parcela'].' <br>
-                            Status do Pedido: ' .$pedido_s['status'].' <br>
-                            Forma de Pagamento: ' .$pedido_s['forma_pag'].' <br>
-                            
+                        
+                            <p> <b>Nome do Produto:</b> '.$produto_s['nome'].'</p> <br>
+                            <p> <b> Descrição do Produto:</b> '.$produto_s['desc'].' </p> <br>
+                            <p> <b>Valor Total do Produto:</b> '.$produto_s['valor'].' </p> <br>
+                            <p> <b>Número de Parcelas:</b> '.$pedido_s['n_parcelas'].' </p> <br>
+                            <p> <b>Valor da Parcela:</b> '.$pedido_s['valor_parcela'].' </p> <br>
+                            <p> <b>Status do Pedido:</b> ' .$pedido_s['status'].' </p> <br>
+                            <p> <b>Forma de Pagamento:</b> ' .$pedido_s['forma_pag'].' </p> <br>
+                        
  
                         ';
 

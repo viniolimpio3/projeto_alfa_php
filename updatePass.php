@@ -2,7 +2,7 @@
 if(!isset($_SESSION)) 
     session_start();
 if( isset($_SESSION['auth_update_pass']) and $_SESSION['auth_update_pass'] and isset($_SESSION['email_recover']) ){
-    //quando terminar $_SESSION['auth_update_pass'] = false; !!!!!
+    //quando terminar  !!!!!
 
     if(  !( isset($_REQUEST['enviou']) and $_REQUEST['enviou'] === 'sim' and isset($_POST['senha']) and isset($_POST['senha_conf'])  )   ){
         ?>
@@ -47,12 +47,12 @@ if( isset($_SESSION['auth_update_pass']) and $_SESSION['auth_update_pass'] and i
         try{
             if($cmd->execute()){
                 if($cmd->rowCount() > 0){
-
+                    $_SESSION['auth_update_pass'] = false;
                     echo "<script> alert('Senha atualizada com sucesso.')</script>"; 
                     echo '<a href="login.php">Logar</a>';
                     
                 }else{
-                    echo "<script> alert('não retornou linhas.')</script>"; 
+                    echo "<script> alert('Não foi possível cadastrar essa senha.')</script>"; 
                 }
             }else{
                 echo "<script> alert('Não foi possível atualizar seus dados!\nTente novamente mais tarde.')</script>"; 
